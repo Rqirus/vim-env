@@ -1,0 +1,39 @@
+[user]
+        name = your_git_user_name
+        email = your_email
+[core]
+        autocrlf = input
+    #pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = true
+
+[commit]
+        template = /home/cmh/commit.tp
+[diff]
+    colorMoved = default
+        tool = vimdiff
+[difftool]
+        prompt = false
+[alias]
+        d = difftool
+        st = status -uno
+        ct = commit
+        co = checkout
+        br = branch
+        l = log
+        df = diff
+        dfc = diff --cached
+        lp = log -p
+        ls = log --stat
+
+[merge]
+        tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+        prompt = false

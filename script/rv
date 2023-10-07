@@ -1,0 +1,26 @@
+#!/bin/bash
+# lazy use rg-fzf-vim
+
+if [[ $1 == "abcd1234" ]]; then
+        file_name=$(echo $2 | awk -F: '{print $1}')
+        line_number=$(echo $2 | awk -F: '{print $2}')
+        context_number=20
+        N=$(($line_number-$context_number))
+        if [[ $N -le 0 ]]; then
+                N=1
+        fi
+        M=$(($line_number+$context_number))
+        bat $file_name --color=always --line-range $N:$M -H $line_number
+        exit
+fi
+
+
+selected_file=$(rg "$@" --line-number --color=always | fzf +s --ansi --cycle  --header="SEARCH RESULT FOR \"$1\"" --preview="$0 abcd1234 {}")
+
+file_name=$(echo $selected_file | awk -F: '{print $1}')
+line_number=$(echo $selected_file | awk -F: '{print $2}')
+
+if [ -n "$selected_file" ]; then
+    vim "$file_name" +$line_number
+fi
+
