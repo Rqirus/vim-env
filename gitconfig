@@ -1,8 +1,9 @@
 [user]
-        name = your_git_user_name
-        email = your_email
+        name = Rqirus
+        email = cmh79479@gmail.com
 [core]
         autocrlf = input
+	editor = vim
     #pager = diff-so-fancy | less --tabs=4 -RFX
     pager = delta
 
